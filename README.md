@@ -1,5 +1,9 @@
 ## Test FastAPI App
 
+### Important Notes
+
+It's my first application that I developed using FastAPI. I understand that there is many bad practices and other problems in code.
+
 ### Task
 
 Part 1:
