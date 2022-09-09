@@ -5,6 +5,7 @@ from fastapi import Depends, FastAPI, HTTPException, status
 from sqlalchemy.orm import Session
 
 import crud, models, schemas
+
 from database import engine, get_db
 
 from auth import verify_password, create_access_token, get_current_user
@@ -52,8 +53,7 @@ def connect_to_game(id: int, db: Session = Depends(get_db), user: models.User = 
     user.games.append(game)
     db.add(user)
     db.commit()
-    return "Game was connected."
-
+    return {"message": "Game was connected."}
 
 
 if __name__ == "__main__":
