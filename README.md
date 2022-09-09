@@ -21,6 +21,10 @@ Part 2 (Advanced):
 - Use SQLAlchemy for store your models
 -Use docker for run your code
 
+### Environment
+
+You should create .env file(look .env.example).
+
 ### Commands
 
 - To run: `docker-compose up --build d`
