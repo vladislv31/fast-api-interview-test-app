@@ -27,7 +27,7 @@ You should create .env file(look .env.example).
 
 ### Commands
 
-- To run: `docker-compose up --build d`
+- To run: `docker-compose up --build d` (You may run it repeatedly if app not starting because of web not waiting for db)
 - To seed db: `docker-compose run web python init_db.py`
 
 Then you can use docs with: http://localhost:8000/docs
