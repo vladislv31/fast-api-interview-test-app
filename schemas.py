@@ -1,31 +1,6 @@
-from typing import List, Union
+from typing import List
 
-import uuid
-
-from fastapi_users import schemas
-from pydantic import BaseModel
-
-
-class UserRead(schemas.BaseUser[uuid.UUID]):
-    pass
-
-
-class UserCreate(schemas.BaseUserCreate):
-    pass
-
-
-class UserUpdate(schemas.BaseUserUpdate):
-    pass
-
-
-class User(BaseModel):
-    id: int
-    name: str
-    age: int
-    email: str
-
-    class Config:
-        orm_mode = True
+from pydantic import BaseModel, EmailStr, validator
 
 
 class Game(BaseModel):
@@ -34,3 +9,43 @@ class Game(BaseModel):
 
     class Config:
         orm_mode = True
+
+
+class UserBase(BaseModel):
+    name: str
+    email: EmailStr
+    age: int
+
+    @validator("age")
+    def age_range(cls, value):
+        if not (0 <= int(value) <= 100):
+            raise ValueError("age should be in range 0-100.")
+        return value
+
+
+class UserCreate(UserBase):
+    password: str
+
+
+class User(UserBase):
+    id: int
+
+    class Config:
+        orm_mode = True
+
+
+class GameWithUsers(Game):
+    users: List[User]
+
+
+class UserWithGames(User):
+    games: List[Game]
+
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+class Login(BaseModel):
+    email: str
+    password: str
