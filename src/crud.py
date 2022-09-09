@@ -1,8 +1,8 @@
 from sqlalchemy.orm import Session
 
-import models, schemas
+from . import models, schemas
 
-from auth import hash_password
+from .auth import hash_password
 
 
 def create_user(db: Session, user: schemas.UserCreate):

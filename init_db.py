@@ -1,5 +1,5 @@
-from database import SessionLocal
-from models import Game
+from src.database import SessionLocal
+from src.models import Game
 
 
 db = SessionLocal()
